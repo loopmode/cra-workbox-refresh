@@ -1,0 +1,36 @@
+{
+  "name": "@loopmode/cra-workbox-refresh",
+  "description": "Helper for displaying a notification after service worker updates in a CRA2 app",
+  "license": "MIT",
+
+  "version": "0.0.2",
+  "main": "index.js",
+  
+  "author": {
+    "name": "Jovica Aleksic",
+    "email": "jovica.aleksic@loopmode.de"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/loopmode/cra-workbox-refresh.git"
+  },
+  "bugs": {
+    "url": "https://github.com/loopmode/cra-workbox-refresh/issues"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "bin": {
+    "inject-workbox-refresh": "./inject-workbox-refresh.js"
+  },
+  "dependencies": {
+    "fs-extra": "^7.0.1"
+  },
+  "keywords": [
+    "create-react-app",
+    "workbox",
+    "service-worker",
+    "refresh",
+    "update"
+  ]
+}
