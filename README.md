@@ -5,6 +5,8 @@ Displays a UI that informs the user about updates and recommends a page refresh.
 
 Based on https://developers.google.com/web/tools/workbox/guides/advanced-recipes.
 
+<img src="https://github.com/loopmode/cra-workbox-refresh/raw/master/preview.gif" />
+
 **_Note: Requires Node >8_**
 
 ## Installation

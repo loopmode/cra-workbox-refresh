@@ -3,7 +3,7 @@
   "description": "Helper for displaying a notification after service worker updates in a CRA2 app",
   "license": "MIT",
 
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   
   "author": {
