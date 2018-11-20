@@ -38,8 +38,7 @@ It will inject a simple piece of code for handling a `skipWaiting` message in th
 
 ```
 // this is appended to build/service-worker.js after each build
-self.addEventListener('message', (event) => {
-  if (!event.data) { return; }
+self.addEventListener('message', function handleSkipWaiting(event) {
   if (event.data === 'skipWaiting') { self.skipWaiting(); }
 });
 ```

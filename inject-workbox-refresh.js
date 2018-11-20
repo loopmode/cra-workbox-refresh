@@ -11,8 +11,7 @@ const fs = require("fs-extra");
 // this script should be executed directly after the build is finished
 
 const codeToAppend = `
-self.addEventListener('message', (event) => {
-  if (!event.data) { return; }
+self.addEventListener('message', function handleSkipWaiting(event) {
   if (event.data === 'skipWaiting') { self.skipWaiting(); }
 });
 `;
