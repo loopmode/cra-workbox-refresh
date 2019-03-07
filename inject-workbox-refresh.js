@@ -12,7 +12,18 @@ const fs = require("fs-extra");
 
 const codeToAppend = `
 self.addEventListener('message', function handleSkipWaiting(event) {
-  if (event.data === 'skipWaiting') { self.skipWaiting(); }
+  if (event.data === 'skipWaiting') { 
+      clients.matchAll({includeUncontrolled: true}).then(function(clients) {
+          // Loop over all available clients
+          clients.forEach(function(client) {
+              // No need to update the tab that sent the data
+              if (client.id !== event.source.id ) {
+                  client.postMessage('reloadPage')    
+              }
+          })
+      })
+  self.skipWaiting();
+  }
 });
 `;
 
