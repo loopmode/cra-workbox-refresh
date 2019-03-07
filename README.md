@@ -59,6 +59,56 @@ serviceWorker.register({
 });
 ```
 
+### 3. Check for service worker update and activation service worker in other tabs
+
+In your main js file (`App.js`), you you can add specific behavior:
+
+```
+    componentDidMount() {
+        if ('serviceWorker' in navigator) {
+            // Reload page after message from worker (if sw activated in another tab)
+            navigator.serviceWorker.addEventListener('message', function(event){
+                if(event.data === 'reloadPage') {
+                    window.location.reload();
+                }
+            });
+            
+            // Check for sw updates every second. You can change this interval.
+            // Don't forget to clear the interval in the componentWillUnmount
+            this.intervalSW = setInterval(() => navigator.serviceWorker.getRegistrations()
+                .then(registrationsArray => {
+                    // Check for update service worker
+                    if (registrationsArray && registrationsArray[0]) {
+                        registrationsArray[0].update();
+                    } else {
+                        console.error("serviceWorker: getRegistrations empty!")
+                    }
+                }), 1000)
+        } else {
+            console.error("Browser does not support serviceWorker!")
+        }
+    }
+```
+
+### Check if the service worker is already waiting.
+
+```
+    navigator.serviceWorker
+        .register(swUrl)
+        .then(registration => {
+            if(registration.waiting && registration.active) {
+                // The page has been loaded when there's already a waiting and active SW.
+                // This would happen if skipWaiting() isn't being called, and there are
+                // still old tabs open.
+                if(config && config.onUpdate) {
+                    config.onUpdate(registration);
+                }
+            }
+            // ...
+        })
+        // ...
+```
+
 ## Options
 
 ### textContent
